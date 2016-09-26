@@ -198,6 +198,29 @@ object featuring a `CaptureError.CAPTURE_NO_MEDIA_FILES` error code.
 - Windows 8
 - Windows
 
+### iOS Quirks
+
+Since iOS 10 it's mandatory to add a `NSCameraUsageDescription`, `NSMicrophoneUsageDescription` and `NSPhotoLibraryUsageDescriptionentry` in the info.plist.
+
+* `NSCameraUsageDescription` describes the reason that the app accesses the user’s camera.
+* `NSMicrophoneUsageDescription` describes the reason that the app accesses the user’s microphone.
+* `NSPhotoLibraryUsageDescriptionentry` describes the reason the app accesses the user's photo library.
+
+When the system prompts the user to allow access, this string is displayed as part of the dialog box.
+
+To add this entry you can pass the following variables on plugin install.
+
+* `CAMERA_USAGE_DESCRIPTION` for `NSCameraUsageDescription`
+* `MICROPHONE_USAGE_DESCRIPTION` for `NSMicrophoneUsageDescription`
+* `PHOTOLIBRARY_USAGE_DESCRIPTION` for `NSPhotoLibraryUsageDescriptionentry`
+
+-
+Example:
+
+`cordova plugin add cordova-plugin-media-capture --variable CAMERA_USAGE_DESCRIPTION="your usage message"`
+
+If you don't pass the variable, the plugin will add an empty string as value.
+
 ### Windows Phone 7 Quirks
 
 Invoking the native camera application while your device is connected
