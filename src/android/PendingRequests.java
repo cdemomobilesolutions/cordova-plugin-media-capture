@@ -192,6 +192,10 @@ public class PendingRequests {
                 this.limit = options.optLong("limit", 1);
                 this.duration = options.optInt("duration", 0);
                 this.quality = options.optInt("quality", 1);
+
+				if (this.quality>1){		
+				 this.quality = 1;		
+				}
             }
 
             this.requestCode = incrementCurrentReqId();
