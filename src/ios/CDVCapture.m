@@ -72,6 +72,14 @@
     [super viewWillAppear:animated];
 }
 
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations {
+    return UIInterfaceOrientationMaskAll;
+}
+
+- (BOOL)shouldAutorotate {
+    return YES;
+}
+
 @end
 
 @implementation CDVCapture
