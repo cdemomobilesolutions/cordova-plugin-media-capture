@@ -259,19 +259,22 @@
         pickerController.delegate = self;
         pickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
         pickerController.allowsEditing = NO;
+        pickerController.videoQuality = UIImagePickerControllerQualityTypeHigh;
+        
 		// Set quality of captured video		
         if (quality) {		
 	        if ([quality intValue] == 0) {		
-                pickerController.videoQuality = UIImagePickerControllerQualityTypeLow;		
+                pickerController.videoQuality = UIImagePickerControllerQualityType640x480;		
             } else if ([quality intValue] == 1) {		
-	                pickerController.videoQuality = UIImagePickerControllerQualityTypeMedium;		
+	                pickerController.videoQuality = UIImagePickerControllerQualityTypeIFrame1280x720;
             } else if ([quality intValue] == 2) {		
                 pickerController.videoQuality = UIImagePickerControllerQualityTypeHigh;		
             }		
             else{		
-                pickerController.videoQuality = UIImagePickerControllerQualityTypeMedium;		
+                pickerController.videoQuality = UIImagePickerControllerQualityType640x480;
             }		
         }
+    
 
         // iOS 3.0
         pickerController.mediaTypes = [NSArray arrayWithObjects:mediaType, nil];
@@ -283,12 +286,9 @@
             //NSLog(@"pickerController.videoMaximumDuration = %f", pickerController.videoMaximumDuration);
         }
 
-        // iOS 4.0
+        // iOS 4.0+
         if ([pickerController respondsToSelector:@selector(cameraCaptureMode)]) {
             pickerController.cameraCaptureMode = UIImagePickerControllerCameraCaptureModeVideo;
-            // pickerController.videoQuality = UIImagePickerControllerQualityTypeHigh;
-            // pickerController.cameraDevice = UIImagePickerControllerCameraDeviceRear;
-            // pickerController.cameraFlashMode = UIImagePickerControllerCameraFlashModeAuto;
         }
         // CDVImagePicker specific property
         pickerController.callbackId = callbackId;
