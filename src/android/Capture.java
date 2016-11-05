@@ -297,14 +297,15 @@ public class Capture extends CordovaPlugin {
 
             if(Build.VERSION.SDK_INT > 7){
                 intent.putExtra("android.intent.extra.durationLimit", req.duration);
+                intent.putExtra("android.intent.extra.videoQuality", 1);
                 
-                //cDemo convention: 0 low | 1 Medium | 2 High
-                if (req.quality > 1) {
-                    intent.putExtra("android.intent.extra.videoQuality", 1);
-                }
-                else{
-                    intent.putExtra("android.intent.extra.videoQuality", 0);
-                }
+//                //cDemo convention: 0 low | 1 Medium | 2 High
+//                if (req.quality > 1) {
+//                    intent.putExtra("android.intent.extra.videoQuality", 1);
+//                }
+//                else{
+//                    intent.putExtra("android.intent.extra.videoQuality", 0);
+//                }
                 
                 //intent.putExtra("android.intent.extra.videoQuality", req.quality);
             }
