@@ -260,22 +260,7 @@
         pickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
         pickerController.allowsEditing = NO;
         pickerController.videoQuality = UIImagePickerControllerQualityTypeHigh;
-        
-		// Set quality of captured video		
-        if (quality) {		
-	        if ([quality intValue] == 0) {		
-                pickerController.videoQuality = UIImagePickerControllerQualityType640x480;		
-            } else if ([quality intValue] == 1) {		
-	                pickerController.videoQuality = UIImagePickerControllerQualityTypeIFrame1280x720;
-            } else if ([quality intValue] == 2) {		
-                pickerController.videoQuality = UIImagePickerControllerQualityTypeHigh;		
-            }		
-            else{		
-                pickerController.videoQuality = UIImagePickerControllerQualityType640x480;
-            }		
-        }
     
-
         // iOS 3.0
         pickerController.mediaTypes = [NSArray arrayWithObjects:mediaType, nil];
 
