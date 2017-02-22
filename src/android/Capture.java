@@ -26,6 +26,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
+import android.graphics.Bitmap;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -390,7 +391,7 @@ public class Capture extends CordovaPlugin {
             try {
                 uri = this.cordova.getActivity().getContentResolver().insert(android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
             } catch (UnsupportedOperationException e) {
-                LOG.d(LOG_TAG, "Can't write to external media storage.");
+                LOG.d(LOG_TAG, "Can't write to external media storageoutWidth.");
                 try {
                     uri = this.cordova.getActivity().getContentResolver().insert(android.provider.MediaStore.Images.Media.INTERNAL_CONTENT_URI, values);
                 } catch (UnsupportedOperationException ex) {
@@ -401,11 +402,16 @@ public class Capture extends CordovaPlugin {
             }
             FileInputStream fis = new FileInputStream(getTempDirectoryPath() + "/Capture.jpg");
             OutputStream os = this.cordova.getActivity().getContentResolver().openOutputStream(uri);
-            byte[] buffer = new byte[4096];
-            int len;
-            while ((len = fis.read(buffer)) != -1) {
-                os.write(buffer, 0, len);
-            }
+
+            Bitmap bitmap = BitmapFactory.decodeStream(fis);
+            Bitmap.CompressFormat compressFormat = Bitmap.CompressFormat.JPEG ;
+            bitmap.compress(compressFormat, 90, os);
+
+//            byte[] buffer = new byte[4096];
+//            int len;
+//            while ((len = fis.read(buffer)) != -1) {
+//                os.write(buffer, 0, len);
+//            }
             os.flush();
             os.close();
             fis.close();
